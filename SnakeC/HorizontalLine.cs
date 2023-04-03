@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace SnakeC
 {
     internal class HorizontalLine :Figure
     {
+        
         public HorizontalLine(int xLeft, int xRight, int y, char sym )
         {   
             pList =new List<Point>(); ;
@@ -16,6 +18,7 @@ namespace SnakeC
                 Point p = new Point(x, y, sym);
                 pList.Add(p);
             }
+            
             /*pList = new List<Point>();
             Point p1 = new Point(4, 4, '*');
             Point p2 = new Point(5, 4, '*');
