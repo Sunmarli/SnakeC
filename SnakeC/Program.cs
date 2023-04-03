@@ -1,13 +1,17 @@
 ﻿using SnakeC;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Xml.Linq;
 using System.Numerics;
 using System.Threading;
 using WMPLib;
+
+//Создать класс препядствия для змейки и конец игры после врезания в препядствие
+//Создать класс Очки для подсчета очков в игре и вывод их на экран в реальном времени
+//Создать класс для показа конца игры 
+//Создать класс для записи и вывода результатов в файл и на экран 
+//Создать Класс для проигрывания музыки и звуков в игре 
+//Ускорить змейку при проходе через определенное значение очков 
 
 
 namespace SnakeC
@@ -18,11 +22,9 @@ namespace SnakeC
 
         static void Main(string[] args)
         {
+            
             Sounds sounds = new Sounds(@"C:\Users\Maria\source\repos\Sunmarli\SnakeC\SnakeC\Resources\");
-
-            // Play the background music
-            sounds.PlayBackground();
-
+            sounds.PlayBackground(); // Play the background music
 
             Console.SetWindowSize(80, 25);
 
@@ -66,12 +68,12 @@ namespace SnakeC
                 }
                 
 
-                if (Console.KeyAvailable)
+                if (Console.KeyAvailable) 
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
                     snake.HandleKey(key.Key);
                 }
-                if (pointCount >= 5)
+                if (pointCount >= 5) //speed up the snake if poins are incresing
                 {
                     Thread.Sleep(60);
                 }
@@ -86,32 +88,17 @@ namespace SnakeC
 
 
             }
-            WriteGameOver();
+            ConsoleUtils.WriteGameOver();// Writes game over screen
             sounds.PlayGameOver();// Stop music playback
             sounds.StopAll();
+            ScoreManager scoreManager = new ScoreManager(); 
+            scoreManager.WriteScores(pointCount);
+
+            ScoreManager.PrintHighScores();//writes score table
+
             Console.ReadLine();
+            
         }
 
-
-
-
-        static void WriteGameOver()
-        {
-            int xOffset = 25;
-            int yOffset = 8;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(xOffset, yOffset++);
-            WriteText("============================", xOffset, yOffset++);
-            WriteText("GAME OVER", xOffset + 1, yOffset++);
-            yOffset++;
-            WriteText("============================", xOffset, yOffset++);
-
-        }
-
-        static void WriteText(String text, int xOffset, int yOffset)
-        {
-            Console.SetCursorPosition(xOffset, yOffset);
-            Console.WriteLine(text);
-        }
     }
 }

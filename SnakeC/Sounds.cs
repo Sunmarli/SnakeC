@@ -7,8 +7,11 @@ using WMPLib;
 using System.Collections.Generic;
 
     namespace SnakeC
-    {
-        public class Sounds
+{     
+    //*creating the Players for backgroundmusic with backgroundPlayer so the music can play all game
+    //and effectPlayer so the background music can be interrupted*//
+
+    public class Sounds
         {
             private WindowsMediaPlayer backgroundPlayer;
             private WindowsMediaPlayer effectPlayer;

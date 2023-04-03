@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SnakeC
-{
+{   //counting the points in the game 
     public class Points
     {
             private int pointCount;
